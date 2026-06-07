@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"syscall"
 	"time"
 
 	"github.com/abema/go-mp4"
@@ -39,11 +38,9 @@ func GetMediaCreationTime(filePath string) (time.Time, string, error) {
 	}
 
 	// Try creation time (birth time)
-	if stat, ok := fi.Sys().(*syscall.Stat_t); ok {
-		cTime := getCreationTime(stat)
-		if !cTime.IsZero() {
-			return cTime, "creation", nil
-		}
+	cTime := getFileCreationTime(fi)
+	if !cTime.IsZero() {
+		return cTime, "creation", nil
 	}
 
 	// Try modification time (mtime)

@@ -3,15 +3,18 @@
 package metadata
 
 import (
+	"os"
 	"syscall"
 	"time"
 )
 
-func getCreationTime(stat *syscall.Stat_t) time.Time {
-	sec := stat.Birthtimespec.Sec
-	nsec := stat.Birthtimespec.Nsec
-	if sec > 0 {
-		return time.Unix(sec, nsec)
+func getFileCreationTime(fi os.FileInfo) time.Time {
+	if stat, ok := fi.Sys().(*syscall.Stat_t); ok {
+		sec := stat.Birthtimespec.Sec
+		nsec := stat.Birthtimespec.Nsec
+		if sec > 0 {
+			return time.Unix(sec, nsec)
+		}
 	}
 	return time.Time{}
 }
