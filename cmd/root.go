@@ -39,17 +39,17 @@ into a structured directory hierarchy using their EXIF/metadata creation dates.`
 			}
 
 			if cfg.Verbose {
-				fmt.Printf("Configured destination: %s\n", cfg.Destination)
-				fmt.Printf("Recursive search: %t\n", cfg.Recursive)
-				fmt.Printf("Dry run mode: %t\n", cfg.DryRun)
-				fmt.Printf("Force lowercase extensions: %t\n", cfg.LowercaseExtension)
-				fmt.Printf("Folder pattern: %s\n", cfg.Naming.FolderPattern)
-				fmt.Printf("File pattern: %s\n", cfg.Naming.FilePattern)
+				fmt.Printf("%s: %s\n", color.HiBlackString("Configured destination"), cfg.Destination)
+				fmt.Printf("%s: %t\n", color.HiBlackString("Recursive search"), cfg.Recursive)
+				fmt.Printf("%s: %t\n", color.HiBlackString("Dry run mode"), cfg.DryRun)
+				fmt.Printf("%s: %t\n", color.HiBlackString("Force lowercase extensions"), cfg.LowercaseExtension)
+				fmt.Printf("%s: %s\n", color.HiBlackString("Folder pattern"), cfg.Naming.FolderPattern)
+				fmt.Printf("%s: %s\n", color.HiBlackString("File pattern"), cfg.Naming.FilePattern)
 				if cfg.Naming.DefaultPrefix != "" {
-					fmt.Printf("Prefix: %s\n", cfg.Naming.DefaultPrefix)
+					fmt.Printf("%s: %s\n", color.HiBlackString("Prefix"), cfg.Naming.DefaultPrefix)
 				}
 				if cfg.Naming.DefaultSuffix != "" {
-					fmt.Printf("Suffix: %s\n", cfg.Naming.DefaultSuffix)
+					fmt.Printf("%s: %s\n", color.HiBlackString("Suffix"), cfg.Naming.DefaultSuffix)
 				}
 			}
 
@@ -61,7 +61,7 @@ into a structured directory hierarchy using their EXIF/metadata creation dates.`
 			}
 
 			if cfg.Verbose {
-				fmt.Printf("Processing source paths: %v\n", args)
+				fmt.Printf("%s: %v\n", color.HiBlackString("Processing source paths"), args)
 			}
 
 			// Configure and instantiate the renamer

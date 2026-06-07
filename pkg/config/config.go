@@ -38,8 +38,8 @@ func LoadConfig(configFile string) (*Config, error) {
 	viper.SetDefault("verbose", false)
 	viper.SetDefault("quiet", false)
 	viper.SetDefault("no_color", false)
-	viper.SetDefault("naming.folder_pattern", "%Y/%Y-%m/%Y-%m-%d%s")
-	viper.SetDefault("naming.file_pattern", "%p%Y%m%d-%H%M%S%s%c%e")
+	viper.SetDefault("naming.folder_pattern", "%Y/%Y-%m/%Y-%m-%d-%s")
+	viper.SetDefault("naming.file_pattern", "%p%Y%m%d-%H%M%S-%s%c%e")
 	viper.SetDefault("naming.default_prefix", "")
 	viper.SetDefault("naming.default_suffix", "")
 

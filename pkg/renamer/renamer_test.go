@@ -38,10 +38,10 @@ func TestRenamer_Process_Integration(t *testing.T) {
 		DryRun:             false,
 		LowercaseExtension: true,
 		Verbose:            true,
-		FolderPattern:      "%Y/%Y-%m/%Y-%m-%d%s",
-		FilePattern:        "%p%Y%m%d-%H%M%S%s%c%e",
+		FolderPattern:      "%Y/%Y-%m/%Y-%m-%d-%s",
+		FilePattern:        "%p%Y%m%d-%H%M%S-%s%c%e",
 		DefaultPrefix:      "IMG_",
-		DefaultSuffix:      "-test",
+		DefaultSuffix:      "test",
 	}
 
 	r := New(opts)
@@ -84,10 +84,10 @@ func TestRenamer_DryRun(t *testing.T) {
 		DryRun:             true, // Dry run enabled
 		LowercaseExtension: true,
 		Verbose:            true,
-		FolderPattern:      "%Y/%Y-%m/%Y-%m-%d%s",
-		FilePattern:        "%p%Y%m%d-%H%M%S%s%c%e",
+		FolderPattern:      "%Y/%Y-%m/%Y-%m-%d-%s",
+		FilePattern:        "%p%Y%m%d-%H%M%S-%s%c%e",
 		DefaultPrefix:      "IMG_",
-		DefaultSuffix:      "-test",
+		DefaultSuffix:      "test",
 	}
 
 	r := New(opts)
@@ -142,10 +142,10 @@ func TestRenamer_CollisionCounter(t *testing.T) {
 		DryRun:             false,
 		LowercaseExtension: true,
 		Verbose:            true,
-		FolderPattern:      "%Y/%Y-%m/%Y-%m-%d%s",
-		FilePattern:        "%p%Y%m%d-%H%M%S%s%c%e",
+		FolderPattern:      "%Y/%Y-%m/%Y-%m-%d-%s",
+		FilePattern:        "%p%Y%m%d-%H%M%S-%s%c%e",
 		DefaultPrefix:      "IMG_",
-		DefaultSuffix:      "-test",
+		DefaultSuffix:      "test",
 	}
 
 	r := New(opts)

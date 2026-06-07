@@ -18,7 +18,7 @@ Create a Go CLI tool using **Cobra** and **Viper** that reads image metadata (EX
 ### B. Directory Hierarchy & Organization
 Files are grouped and moved into nested subfolders dynamically created based on the photo's creation date (extracted from EXIF metadata):
 * **Folder Structure Pattern:** `[Year]/[Year]-[Month]/[Year]-[Month]-[Day]-[Suffix]`
-* **Format String:** `%P%Y/%Y-%M/%Y-%M-%D%S` *(or standard pattern, see below)*
+* **Format String:** `%P%Y/%Y-%M/%Y-%M-%D-%S` *(or standard pattern, see below)*
 * **Components:**
   * `%P` (Prefix): Optional prefix (defaults to empty).
   * `%Y` (Year): 4-digit year (e.g., `2023`).
@@ -29,7 +29,7 @@ Files are grouped and moved into nested subfolders dynamically created based on 
   `/Users/joseortizcastano/Pictures/Sorted/2023/2023-08/2023-08-03-Playa/`
 
 ### C. File Renaming Conventions
-* **Format String:** `%P%Y%M%D-%h%m%s%S%C%F` *(or standard pattern, see below)*
+* **Format String:** `%P%Y%M%D-%h%m%s-%S%C%F` *(or standard pattern, see below)*
 * **Components:**
   * `%P` (Prefix): Optional prefix (defaults to empty).
   * `%Y%M%D` (Date): 4-digit Year, 2-digit Month, 2-digit Day (e.g., `20230803`).
@@ -123,11 +123,11 @@ verbose: false
 naming:
   # Folder hierarchy pattern.
   # Standard token format for: [Year]/[Year]-[Month]/[Year]-[Month]-[Day]-[Suffix]
-  folder_pattern: "%Y/%Y-%m/%Y-%m-%d%s"
+  folder_pattern: "%Y/%Y-%m/%Y-%m-%d-%s"
   
   # File renaming pattern.
   # Standard token format for: [Prefix][Year][Month][Day]-[Hour][Minute][Second][Suffix][Counter][Extension]
-  file_pattern: "%p%Y%m%d-%H%M%S%s%c%e"
+  file_pattern: "%p%Y%m%d-%H%M%S-%s%c%e"
   
   # Default fallback strings if none are provided via CLI flags
   default_prefix: ""

@@ -27,10 +27,10 @@ func TestLoadConfig_Defaults(t *testing.T) {
 	if !cfg.LowercaseExtension {
 		t.Error("expected default lowercase_extension to be true")
 	}
-	if cfg.Naming.FolderPattern != "%Y/%Y-%m/%Y-%m-%d%s" {
+	if cfg.Naming.FolderPattern != "%Y/%Y-%m/%Y-%m-%d-%s" {
 		t.Errorf("unexpected default folder pattern: %s", cfg.Naming.FolderPattern)
 	}
-	if cfg.Naming.FilePattern != "%p%Y%m%d-%H%M%S%s%c%e" {
+	if cfg.Naming.FilePattern != "%p%Y%m%d-%H%M%S-%s%c%e" {
 		t.Errorf("unexpected default file pattern: %s", cfg.Naming.FilePattern)
 	}
 }

@@ -78,11 +78,11 @@ verbose: false
 
 # Formatting rules
 naming:
-  # Folder structure: [Year]/[Year]-[Month]/[Year]-[Month]-[Day][Suffix]
-  folder_pattern: "%Y/%Y-%m/%Y-%m-%d%s"
+  # Folder structure: [Year]/[Year]-[Month]/[Year]-[Month]-[Day]-[Suffix]
+  folder_pattern: "%Y/%Y-%m/%Y-%m-%d-%s"
   
-  # Filename: [Prefix][Year][Month][Day]-[Hour][Minute][Second][Suffix][Counter][Extension]
-  file_pattern: "%p%Y%m%d-%H%M%S%s%c%e"
+  # Filename: [Prefix][Year][Month][Day]-[Hour][Minute][Second]-[Suffix][Counter][Extension]
+  file_pattern: "%p%Y%m%d-%H%M%S-%s%c%e"
   
   # Default suffix/prefix
   default_prefix: ""
