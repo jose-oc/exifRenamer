@@ -8,6 +8,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/fatih/color"
 	"github.com/jose-oc/imagesExifRenamer/pkg/metadata"
 )
 
@@ -190,7 +191,7 @@ func (r *Renamer) Process(sources []string) error {
 		// Check supported extensions
 		if !supportedExtensions[extLower] {
 			if r.Options.Verbose {
-				fmt.Fprintf(os.Stderr, "Warning: skipping unsupported file type: %s\n", srcFile)
+				fmt.Fprint(os.Stderr, color.YellowString("Warning: skipping unsupported file type: %s\n", srcFile))
 			}
 			continue
 		}
@@ -203,7 +204,7 @@ func (r *Renamer) Process(sources []string) error {
 
 		// Warning for fallback
 		if source == "creation" || source == "modification" {
-			fmt.Fprintf(os.Stderr, "Warning: metadata not found for %s. Fell back to file %s time.\n", srcFile, source)
+			fmt.Fprint(os.Stderr, color.YellowString("Warning: metadata not found for %s. Fell back to file %s time.\n", srcFile, source))
 		}
 
 		// Choose extension casing
@@ -243,10 +244,10 @@ func (r *Renamer) Process(sources []string) error {
 
 		// Output planned action
 		if r.Options.DryRun {
-			fmt.Printf("[DRY-RUN] %s -> %s\n", srcFile, targetPath)
+			fmt.Print(color.CyanString("[DRY-RUN] %s -> %s\n", srcFile, targetPath))
 		} else {
 			if r.Options.Verbose {
-				fmt.Printf("Moving %s -> %s\n", srcFile, targetPath)
+				fmt.Print(color.GreenString("Moving %s -> %s\n", srcFile, targetPath))
 			} else {
 				fmt.Printf("%s -> %s\n", srcFile, targetPath)
 			}

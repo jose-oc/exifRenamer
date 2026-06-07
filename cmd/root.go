@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/fatih/color"
 	"github.com/jose-oc/imagesExifRenamer/pkg/config"
 	"github.com/jose-oc/imagesExifRenamer/pkg/renamer"
 	"github.com/spf13/cobra"
@@ -28,6 +29,9 @@ into a structured directory hierarchy using their EXIF/metadata creation dates.`
 			if err != nil {
 				return fmt.Errorf("failed to load configuration: %w", err)
 			}
+
+			// Set color disabling option globally
+			color.NoColor = cfg.NoColor
 
 			// If quiet mode is enabled, silence output unless errors occur.
 			if cfg.Quiet {
@@ -108,6 +112,7 @@ func init() {
 	RootCmd.Flags().StringP("suffix", "s", "", "Temporary suffix to insert via %s or %S token (overrides config default)")
 	RootCmd.Flags().BoolP("verbose", "v", false, "Enable verbose logging")
 	RootCmd.Flags().BoolP("quiet", "q", false, "Silence output except for critical errors")
+	RootCmd.Flags().Bool("no-color", false, "Disable colorized console output")
 
 	// Bind flags to Viper configuration values
 	viper.BindPFlag("recursive", RootCmd.Flags().Lookup("recursive"))
@@ -118,4 +123,5 @@ func init() {
 	viper.BindPFlag("naming.default_suffix", RootCmd.Flags().Lookup("suffix"))
 	viper.BindPFlag("verbose", RootCmd.Flags().Lookup("verbose"))
 	viper.BindPFlag("quiet", RootCmd.Flags().Lookup("quiet"))
+	viper.BindPFlag("no_color", RootCmd.Flags().Lookup("no-color"))
 }

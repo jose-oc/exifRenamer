@@ -24,6 +24,7 @@ type Config struct {
 	LowercaseExtension bool         `mapstructure:"lowercase_extension"`
 	Verbose            bool         `mapstructure:"verbose"`
 	Quiet              bool         `mapstructure:"quiet"`
+	NoColor            bool         `mapstructure:"no_color"`
 	Naming             NamingConfig `mapstructure:"naming"`
 }
 
@@ -36,6 +37,7 @@ func LoadConfig(configFile string) (*Config, error) {
 	viper.SetDefault("lowercase_extension", true)
 	viper.SetDefault("verbose", false)
 	viper.SetDefault("quiet", false)
+	viper.SetDefault("no_color", false)
 	viper.SetDefault("naming.folder_pattern", "%Y/%Y-%m/%Y-%m-%d%s")
 	viper.SetDefault("naming.file_pattern", "%p%Y%m%d-%H%M%S%s%c%e")
 	viper.SetDefault("naming.default_prefix", "")
