@@ -20,8 +20,7 @@ var (
 		Version: Version,
 		Short:   "ExifRenamer is a CLI tool to rename and organize images/videos based on EXIF metadata.",
 		Long: `A high-performance Go CLI utility to rename and organize image and video files
-into a structured directory hierarchy using their EXIF/metadata creation dates, replicating
-the behavior of the macOS ExifRenamer application.`,
+into a structured directory hierarchy using their EXIF/metadata creation dates.`,
 		Args: cobra.ArbitraryArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			// Load configuration, resolving file configurations, environment variables and overrides.
