@@ -1,0 +1,56 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Build Binaries
+        run: |
+          # Build for macOS Apple Silicon
+          GOOS=darwin GOARCH=arm64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/exifrenamer-darwin-arm64 main.go
+          
+          # Build for macOS Intel
+          GOOS=darwin GOARCH=amd64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/exifrenamer-darwin-amd64 main.go
+          
+          # Build for Linux
+          GOOS=linux GOARCH=amd64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/exifrenamer-linux-amd64 main.go
+          
+          # Build for Windows
+          GOOS=windows GOARCH=amd64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/exifrenamer-windows-amd64.exe main.go
+
+      - name: Package Binaries
+        run: |
+          cd dist
+          tar -czf exifrenamer-darwin-arm64.tar.gz exifrenamer-darwin-arm64
+          tar -czf exifrenamer-darwin-amd64.tar.gz exifrenamer-darwin-amd64
+          tar -czf exifrenamer-linux-amd64.tar.gz exifrenamer-linux-amd64
+          zip exifrenamer-windows-amd64.zip exifrenamer-windows-amd64.exe
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/exifrenamer-darwin-arm64.tar.gz
+            dist/exifrenamer-darwin-amd64.tar.gz
+            dist/exifrenamer-linux-amd64.tar.gz
+            dist/exifrenamer-windows-amd64.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

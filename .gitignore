@@ -1,0 +1,26 @@
+# Binaries
+exifrenamer
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binaries and coverage
+*.test
+*.out
+*.prof
+
+# Dependency directories (only if using vendor)
+# vendor/
+
+# IDE and System Files
+.DS_Store
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
