@@ -23,24 +23,24 @@ jobs:
       - name: Build Binaries
         run: |
           # Build for macOS Apple Silicon
-          GOOS=darwin GOARCH=arm64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/exifrenamer-darwin-arm64 main.go
+          GOOS=darwin GOARCH=arm64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/darwin-arm64/exifrenamer main.go
           
           # Build for macOS Intel
-          GOOS=darwin GOARCH=amd64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/exifrenamer-darwin-amd64 main.go
+          GOOS=darwin GOARCH=amd64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/darwin-amd64/exifrenamer main.go
           
           # Build for Linux
-          GOOS=linux GOARCH=amd64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/exifrenamer-linux-amd64 main.go
+          GOOS=linux GOARCH=amd64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/linux-amd64/exifrenamer main.go
           
           # Build for Windows
-          GOOS=windows GOARCH=amd64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/exifrenamer-windows-amd64.exe main.go
+          GOOS=windows GOARCH=amd64 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=${{ github.ref_name }}" -o dist/windows-amd64/exifrenamer.exe main.go
 
       - name: Package Binaries
         run: |
           cd dist
-          tar -czf exifrenamer-darwin-arm64.tar.gz exifrenamer-darwin-arm64
-          tar -czf exifrenamer-darwin-amd64.tar.gz exifrenamer-darwin-amd64
-          tar -czf exifrenamer-linux-amd64.tar.gz exifrenamer-linux-amd64
-          zip exifrenamer-windows-amd64.zip exifrenamer-windows-amd64.exe
+          tar -czf exifrenamer-darwin-arm64.tar.gz -C darwin-arm64 exifrenamer
+          tar -czf exifrenamer-darwin-amd64.tar.gz -C darwin-amd64 exifrenamer
+          tar -czf exifrenamer-linux-amd64.tar.gz -C linux-amd64 exifrenamer
+          cd windows-amd64 && zip ../exifrenamer-windows-amd64.zip exifrenamer.exe
 
       - name: Create Release
         uses: softprops/action-gh-release@v3

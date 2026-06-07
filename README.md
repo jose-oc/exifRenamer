@@ -35,6 +35,13 @@ To build with a specific version tag:
 go build -ldflags "-X github.com/jose-oc/imagesExifRenamer/cmd.Version=v1.0.0" -o exifrenamer main.go
 ```
 
+### macOS Binary Installation
+If you download the pre-compiled binary and macOS prevents it from running, you need to remove the quarantine attribute:
+
+```bash
+xattr -d com.apple.quarantine ./exifrenamer
+```
+
 ---
 
 ## CLI Flags
