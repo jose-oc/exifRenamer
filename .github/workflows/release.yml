@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: '1.22'
 
@@ -43,7 +43,7 @@ jobs:
           zip exifrenamer-windows-amd64.zip exifrenamer-windows-amd64.exe
 
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             dist/exifrenamer-darwin-arm64.tar.gz
@@ -52,5 +52,6 @@ jobs:
             dist/exifrenamer-windows-amd64.zip
           draft: false
           prerelease: false
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
