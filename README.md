@@ -22,7 +22,7 @@ This tool is designed to fully replicate and modernize the file-handling behavio
 ## Installation
 
 ### Prerequisites
-- Go 1.22 or higher
+- Go 1.26 or higher
 
 ### Build from Source
 Clone this repository and run:
